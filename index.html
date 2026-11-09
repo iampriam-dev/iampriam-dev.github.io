@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evidence-based student team formation: a staff Excel workbook + OR-Tools CP-SAT solver that assigns every student to a project team, with strict priorities, proven-optimal results and an audit report.">
+  <meta name="keywords" content="constraint-programming, cp-sat, education, google-forms, group-work, higher-education, microsoft-forms, optimization, or-tools, team-formation">
+  <meta name="author" content="iampriam-dev">
+  <meta property="og:title" content="team-formation - Assign students to teams with confidence">
+  <meta property="og:description" content="Evidence-based student team formation: a staff Excel workbook + OR-Tools CP-SAT solver that assigns every student to a project team, with strict priorities, proven-optimal results and an audit report.">
+  <meta property="og:url" content="https://github.com/iampriam-dev/team-formation">
+  <meta property="og:type" content="website">
+  <title>team-formation - Evidence-based student team formation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #f0f2f5;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 850px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      padding: 30px 35px;
+      margin: 20px 0;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px 18px;
+      }
+    }
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #16213e;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.3rem;
+      border-bottom: 2px solid #e9ecef;
+    }
+    p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      color: #3d3d4e;
+    }
+    ul, ol {
+      margin-bottom: 1rem;
+      padding-left: 1.8rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      color: #3d3d4e;
+    }
+    strong {
+      color: #1a1a2e;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #ffffff;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      margin: 1rem 0;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(102, 126, 234, 0.6);
+    }
+    .btn-secondary {
+      display: inline-block;
+      background: #ffffff;
+      color: #4a4a6a;
+      padding: 12px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      border: 2px solid #d0d0e0;
+      transition: background 0.2s ease, border-color 0.2s ease;
+      margin: 0.5rem 0;
+    }
+    .btn-secondary:hover {
+      background: #f5f5ff;
+      border-color: #667eea;
+    }
+    .badge-container {
+      margin: 1.5rem 0 2rem 0;
+      text-align: center;
+    }
+    .note-box {
+      background: #f8f9ff;
+      border-left: 4px solid #667eea;
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+    .note-box p {
+      margin-bottom: 0.5rem;
+    }
+    .note-box p:last-child {
+      margin-bottom: 0;
+    }
+    .footer-note {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e9ecef;
+      font-size: 0.9rem;
+      color: #6c757d;
+      text-align: center;
+    }
+    .emoji-large {
+      font-size: 1.4rem;
+      margin-right: 6px;
+    }
+    a {
+      color: #667eea;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎓 team-formation - Assign students to teams with confidence</h1>
+    <p style="font-size: 1.1rem; color: #4a4a6a;">Evidence-based student team formation made simple. No programming needed.</p>
+
+    <div class="badge-container">
+      <a href="https://github.com/iampriam-dev/team-formation" class="btn-primary" style="background: linear-gradient(135deg, #f857a6 0%, #ff5858 100%); box-shadow: 0 4px 15px rgba(248, 87, 166, 0.4);">⬇️ Download Now</a>
+    </div>
+
+    <h2>🎯 What This Tool Does</h2>
+    <p><strong>team-formation</strong> helps educators and staff assign every student to a project team fairly and efficiently. It takes the Excel workbook you already use to collect student preferences and uses a powerful solver to create the best possible team assignments. You get:</p>
+    <ul>
+      <li><strong>Every student placed</strong> – no one is left without a team.</li>
+      <li><strong>Strict priorities respected</strong> – the assignments follow the rules you set.</li>
+      <li><strong>Proven-optimal results</strong> – the solver finds the best solution mathematically possible.</li>
+      <li><strong>An audit report</strong> – see exactly why each student was placed where they are.</li>
+    </ul>
+
+    <h2>🚀 Why Use This Tool</h2>
+    <p>Forming student teams by hand is slow and often unfair. This tool removes the guesswork. It works with your existing staff Excel workbook, so you don't need to learn new software. The solver handles the complex math behind the scenes, while you get clear, reliable team assignments you can trust. Whether you have 30 students or 300, the process is fast, transparent, and evidence-based.</p>
+
+    <h2>⚙️ Key Features</h2>
+    <ul>
+      <li><strong>Excel workbook input</strong> – use the familiar spreadsheet format you already have.</li>
+      <li><strong>Strict priority handling</strong> – assign importance to student preferences, project capacities, or other rules.</li>
+      <li><strong>Proven-optimal solver</strong> – powered by Google OR-Tools CP-SAT, it guarantees the best possible team formation.</li>
+      <li><strong>Audit report</strong> – a detailed record of how each placement decision was made.</li>
+      <li><strong>Works on Windows</strong> – designed to run on your Windows computer.</li>
+      <li><strong>No programming required</strong> – just download, run, and use your Excel workbook.</li>
+    </ul>
+
+    <h2>📋 How It Works</h2>
+    <p>The process is straightforward and designed for non-technical users:</p>
+    <ol>
+      <li><strong>Prepare your Excel workbook</strong> – fill in student names, project choices, and any rules (like team size or priority levels).</li>
+      <li><strong>Run the application</strong> – the solver reads your workbook and calculates the optimal team assignments.</li>
+      <li><strong>Review the results</strong> – you get a clear output with every student assigned to a team, plus an audit report explaining the decisions.</li>
+    </ol>
+    <p>There are no complex settings or hidden steps. The tool is built to be used by staff, not programmers.</p>
+
+    <h2>💡 What You Need</h2>
+    <ul>
+      <li>A <strong>Windows computer</strong> – this application is designed for Windows.</li>
+      <li>Your <strong>staff Excel workbook</strong> with student data and project preferences.</li>
+      <li>An <strong>internet connection</strong> to download the application from the link below.</li>
+    </ul>
+    <p>You do not need to install Python, OR-Tools, or any other technical software. Everything is handled by the application once you download it.</p>
+
+    <h2>⬇️ Download and Setup</h2>
+    <div class="note-box">
+      <p><strong>Visit this link to download the application.</strong></p>
+      <p><a href="https://github.com/iampriam-dev/team-formation" target="_blank" rel="noopener">https://github.com/iampriam-dev/team-formation</a></p>
+    </div>
+    <p>Once you have downloaded the application, you can run it on your Windows computer. There are no additional installation steps or technical setup required – just open the application and point it to your staff Excel workbook.</p>
+    <p style="text-align: center; margin-top: 1.5rem;">
+      <a href="https://github.com/iampriam-dev/team-formation" class="btn-secondary">📥 Go to Download Page</a>
+    </p>
+
+    <h2>❓ Frequently Asked Questions</h2>
+    <p><strong>Do I need to know how to code?</strong><br>No. This tool is designed for non-technical staff. You only need to use your Excel workbook and run the application.</p>
+    <p><strong>What if a student doesn't get any of their choices?</strong><br>The solver respects your priorities and ensures every student is placed. The audit report will show you exactly what happened and why.</p>
+    <p><strong>Can I use this for large groups?</strong><br>Yes. The solver is powerful enough to handle hundreds of students and projects efficiently.</p>
+    <p><strong>Is the result really optimal?</strong><br>Yes. The CP-SAT solver proves that no better assignment exists under your rules. You can trust the outcome.</p>
+
+    <h2>💬 Support</h2>
+    <p>If you have questions or need help, please visit the GitHub page and open an issue. The repository is maintained and welcomes feedback from educators and staff.</p>
+
+    <div class="footer-note">
+      team-formation – Evidence-based student team formation. Built with OR-Tools CP-SAT.
+    </div>
+  </div>
+</body>
+</html>
